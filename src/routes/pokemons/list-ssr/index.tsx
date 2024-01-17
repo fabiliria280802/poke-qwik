@@ -4,6 +4,7 @@ import {
   useComputed$,
   useSignal,
   useStore,
+  useVisibleTask$,
 } from "@builder.io/qwik";
 
 //referencia al tipo de dato DocumentHea
@@ -15,7 +16,7 @@ import {
 } from "@builder.io/qwik-city";
 import { PokemonImage } from "~/components/pokemons/pokemon-image";
 import { Modal } from "~/components/shared";
-import { getSmallPokemons } from "~/helpers/get-small-pokemons";
+import { getSmallPokemons, getPokemonInfo } from "~/helpers";
 import type { SmallPokemon } from "~/interfaces";
 
 //lista de pokemons
@@ -42,15 +43,31 @@ export default component$(() => {
     id: "",
     name: "",
   });
-
+  const pokedexResponse = useSignal("");
   //modal funtions
   const showModal = $((id: string, name: string) => {
     modalPokemon.id = id;
     modalPokemon.name = name;
     modalVisible.value = true;
   });
+
   const closeModal = $(() => {
     modalVisible.value = false;
+  });
+
+  useVisibleTask$(({ track }) => {
+    track(() => modalPokemon.name);
+    pokedexResponse.value = "";
+    if (modalPokemon.name.length > 0) {
+      getPokemonInfo(modalPokemon.name)
+        .then((resp) => {
+          pokedexResponse.value = JSON.stringify(resp);
+        })
+        .catch((error) => {
+          // Handle any errors here
+          console.error("Failed to fetch Pokemon info:", error);
+        });
+    }
   });
 
   //obtener el offset de la url
@@ -102,15 +119,15 @@ export default component$(() => {
           ))
         }
       </div>
-      <Modal
-        persistent={true}
-        showModal={modalVisible.value}
-        closeFn={closeModal}
-      >
+      <Modal persistent showModal={modalVisible.value} closeFn={closeModal}>
         <div q:slot="title">{modalPokemon.name}</div>
         <div q:slot="content" class="flex flex-col justify-center items-center">
           <PokemonImage id={modalPokemon.id} />
-          <span>Preguntandole a ChatGPT</span>
+          <span>
+            {pokedexResponse.value === ""
+              ? "Preguntado a Pokedex"
+              : JSON.stringify(pokedexResponse.value)}
+          </span>
         </div>
       </Modal>
     </>

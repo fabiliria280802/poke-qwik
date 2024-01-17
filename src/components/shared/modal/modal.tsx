@@ -9,7 +9,7 @@ import ModalStyles from "./modal.css?inline";
 interface Props {
   showModal: boolean;
   persistent?: boolean;
-  size: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg";
   closeFn: PropFunction<() => void>;
 }
 

@@ -10,14 +10,18 @@ export default component$(() => {
    */
   const pokemonId = useSignal(1);
   const showBackImage = useSignal(false);
-  const isPokemonVisible = useSignal(true);
+  const isPokemonVisible = useSignal(false);
   //valor de navegacion
   const nav = useNavigate();
 
   //funcion de validacion no existen pokemons menores o iguales a 0
   const changePokemonId = $((value: number) => {
-    if (pokemonId.value + value <= 0) return;
-    pokemonId.value += value;
+    if (pokemonId.value + value <= 0) {
+      isPokemonVisible.value = false;
+    } else {
+      isPokemonVisible.value = false;
+      pokemonId.value += value;
+    }
   });
 
   //funcion de navegacion de informacion pokemon

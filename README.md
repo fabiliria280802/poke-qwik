@@ -78,6 +78,6 @@ Then visit [http://localhost:8080/](http://localhost:8080/)
 
 ## Config .env
 
-Rename the file __.env.template__ to __.env__ and chance the environment variables.
+Rename the file **.env.template** to **.env** and chance the environment variables.
 
 ## Deploy
