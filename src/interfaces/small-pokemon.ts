@@ -1,4 +1,4 @@
-export interface SmallPokemon{
-    id: string;
-    name: string;
+export interface SmallPokemon {
+  id: string;
+  name: string;
 }

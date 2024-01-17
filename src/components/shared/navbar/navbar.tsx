@@ -9,10 +9,10 @@ export default component$(() => {
         <div class={styles.logo}>
           <Link href="/">
             <QwikLogo height={50} />
-            </Link>
+          </Link>
         </div>
         <ul>
-        <li>
+          <li>
             <Link href="/pokemons/list-ssr/">SSR-List</Link>
           </li>
           <li>
