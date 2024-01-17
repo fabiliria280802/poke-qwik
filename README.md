@@ -38,6 +38,8 @@ Use the `npm run qwik add` command to add additional integrations. Some examples
 npm run qwik add # or `yarn qwik add`
 ```
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 ## Development
 
 Development mode uses [Vite's development server](https://vitejs.dev/). The `dev` command will server-side render (SSR) the output during development.
@@ -73,3 +75,9 @@ npm run serve
 ```
 
 Then visit [http://localhost:8080/](http://localhost:8080/)
+
+## Config .env
+
+Rename the file __.env.template__ to __.env__ and chance the environment variables.
+
+## Deploy

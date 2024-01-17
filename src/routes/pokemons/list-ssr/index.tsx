@@ -1,4 +1,10 @@
-import { $, component$, useComputed$, useSignal, useStore } from "@builder.io/qwik";
+import {
+  $,
+  component$,
+  useComputed$,
+  useSignal,
+  useStore,
+} from "@builder.io/qwik";
 
 //referencia al tipo de dato DocumentHea
 import {
@@ -33,8 +39,8 @@ export default component$(() => {
   const nav = useNavigate();
   const modalVisible = useSignal(false);
   const modalPokemon = useStore({
-    id: '',
-    name: ''
+    id: "",
+    name: "",
   });
 
   //modal funtions
@@ -96,7 +102,11 @@ export default component$(() => {
           ))
         }
       </div>
-      <Modal persistent={true}  showModal={modalVisible.value} closeFn={closeModal}>
+      <Modal
+        persistent={true}
+        showModal={modalVisible.value}
+        closeFn={closeModal}
+      >
         <div q:slot="title">{modalPokemon.name}</div>
         <div q:slot="content" class="flex flex-col justify-center items-center">
           <PokemonImage id={modalPokemon.id} />

@@ -4,6 +4,9 @@
 /lib-types
 /server
 
+#no se pueden mostrar las variables de entorno
+.env
+
 # Development
 node_modules
 *.local
