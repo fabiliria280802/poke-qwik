@@ -1,13 +1,14 @@
 import { Slot, component$ } from "@builder.io/qwik";
-import { PokemonProvider } from "~/context";
 import Navbar from "~/components/shared/navbar/navbar";
+
 export default component$(() => {
   return (
-    <PokemonProvider>
+    <>
       <Navbar />
-      <main class="flex flex-col items-center justify-center">
+      <div class="flex flex-col items-center justify-center mt-2">
+        <span class="text-5xl">dashboard layout</span>
         <Slot />
-      </main>
-    </PokemonProvider>
+      </div>
+    </>
   );
 });
