@@ -1,4 +1,10 @@
-import { $, component$, useComputed$, useStore, useStylesScoped$ } from "@builder.io/qwik";
+import {
+  $,
+  component$,
+  useComputed$,
+  useStore,
+  useStylesScoped$,
+} from "@builder.io/qwik";
 
 import styles from "./login.css?inline";
 
@@ -12,34 +18,31 @@ export default component$(() => {
 
   const onSubmit = $(() => {
     formState.formPosted = true;
-    const {email, password} =formState;
+    const { email, password } = formState;
     console.log(email, password);
   });
 
-  const emailError = useComputed$(()=>{
-    if(formState.email.includes('0')) {
-        return '';
-    }else{
-        return 'not-valid';
+  const emailError = useComputed$(() => {
+    if (formState.email.includes("0")) {
+      return "";
+    } else {
+      return "not-valid";
     }
   });
 
-  const passwordError = useComputed$(()=>{
-    if(formState.password.length >= 6) {
-        return '';
-    }else{
-        return 'not-valid';
+  const passwordError = useComputed$(() => {
+    if (formState.password.length >= 6) {
+      return "";
+    } else {
+      return "not-valid";
     }
   });
 
-  const isFormValid = useComputed$(()=>{
-    if(
-        emailError.value =='not-valid' ||
-        passwordError.value =='not-valid'
-    ){
-        return false;
-    }else{
-        return true;
+  const isFormValid = useComputed$(() => {
+    if (emailError.value == "not-valid" || passwordError.value == "not-valid") {
+      return false;
+    } else {
+      return true;
     }
   });
 
@@ -51,7 +54,7 @@ export default component$(() => {
           onInput$={(ev) =>
             (formState.email = (ev.target as HTMLInputElement).value)
           }
-          class={formState.formPosted ? emailError.value: ""}
+          class={formState.formPosted ? emailError.value : ""}
           name="email"
           type="text"
           placeholder="Email address"
@@ -64,7 +67,7 @@ export default component$(() => {
           onInput$={(ev) =>
             (formState.password = (ev.target as HTMLInputElement).value)
           }
-          class={formState.formPosted ? passwordError.value: ""}
+          class={formState.formPosted ? passwordError.value : ""}
           name="password"
           type="password"
           placeholder="Password"
@@ -72,7 +75,9 @@ export default component$(() => {
         <label for="password">Password</label>
       </div>
       <div class="relative">
-        <button disabled={!isFormValid.value} type="submit">Ingresar</button>
+        <button disabled={!isFormValid.value} type="submit">
+          Ingresar
+        </button>
       </div>
       <code>{JSON.stringify(formState, undefined, 2)}</code>
     </form>
