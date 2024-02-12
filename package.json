@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "qwik build",
-    "build.all": "npm run build && npm run builder.server",
+    "build.all": "npm run build && npm run build.server",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.server": "vite build -c adapters/express/vite.config.ts",
